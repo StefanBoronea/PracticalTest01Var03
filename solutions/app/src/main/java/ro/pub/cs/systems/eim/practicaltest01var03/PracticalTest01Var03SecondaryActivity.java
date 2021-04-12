@@ -35,8 +35,10 @@ public class PracticalTest01Var03SecondaryActivity extends AppCompatActivity {
 
         TextView resultText = (TextView)findViewById(R.id.result2);
         Intent intent = getIntent();
-        String result = intent.getStringExtra("result");
-        resultText.setText(result);
+        if (intent != null && intent.getExtras().containsKey("result")) {
+            String result = intent.getStringExtra("result");
+            resultText.setText(result);
+        }
 
         Button correctButton = (Button)findViewById(R.id.correct_button);
         correctButton.setOnClickListener(buttonClickListener);
