@@ -19,7 +19,7 @@ public class PracticalTest01Var03MainActivity extends AppCompatActivity {
             int firstNumber = 0, secondNumber = 0, result = 0;
             EditText editText1 = (EditText)findViewById(R.id.number_1);
             EditText editText2 = (EditText)findViewById(R.id.number_2);
-            EditText resultText = (EditText)findViewById(R.id.result);
+            EditText resultText = (EditText)findViewById(R.id.result2);
             if(isStringInt(editText1.getText().toString()) && isStringInt(editText2.getText().toString()))
             {
                 firstNumber = Integer.valueOf(editText1.getText().toString());
@@ -29,13 +29,18 @@ public class PracticalTest01Var03MainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "TEXTUL INTRODUS NU ESTE UN NUMAR INTREG.", Toast.LENGTH_LONG).show();
 
             switch(view.getId()) {
-                case R.id.plus_button:
+                case R.id.correct_button:
                     result = firstNumber + secondNumber;
                     resultText.setText(String.valueOf(firstNumber + " + " + secondNumber + " = " + result));
                     break;
-                case R.id.minus_button:
+                case R.id.incorrect_button:
                     result = firstNumber - secondNumber;
                     resultText.setText(String.valueOf(firstNumber + " - " + secondNumber + " = " + result));
+                    break;
+                case R.id.navigate_to_secondary_activity_button:
+                    Intent intent = new Intent(getApplicationContext(), PracticalTest01Var03SecondaryActivity.class);
+                    intent.putExtra("result", resultText.toString());
+                    startActivityForResult(intent, 1);
                     break;
             }
         }
@@ -49,9 +54,9 @@ public class PracticalTest01Var03MainActivity extends AppCompatActivity {
         EditText editText1 = (EditText)findViewById(R.id.number_1);
         EditText editText2 = (EditText)findViewById(R.id.number_2);
 
-        Button plusButton = (Button)findViewById(R.id.plus_button);
+        Button plusButton = (Button)findViewById(R.id.correct_button);
         plusButton.setOnClickListener(buttonClickListener);
-        Button minusButton = (Button)findViewById(R.id.minus_button);
+        Button minusButton = (Button)findViewById(R.id.incorrect_button);
         minusButton.setOnClickListener(buttonClickListener);
         if (savedInstanceState != null) {
             if (savedInstanceState.containsKey("number_1")) {
@@ -68,6 +73,10 @@ public class PracticalTest01Var03MainActivity extends AppCompatActivity {
             editText1.setText(String.valueOf(0));
             editText2.setText(String.valueOf(0));
         }
+
+        Button navigateToSecondaryActivityButton = (Button)findViewById(R.id.navigate_to_secondary_activity_button);
+        navigateToSecondaryActivityButton.setOnClickListener(buttonClickListener);
+
     }
     public boolean isStringInt(String s)
     {
@@ -103,6 +112,14 @@ public class PracticalTest01Var03MainActivity extends AppCompatActivity {
             editText2.setText(savedInstanceState.getString("number_2"));
         } else {
             editText2.setText(String.valueOf(0));
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+        if (requestCode == 1) {
+            Toast.makeText(this, "The activity returned with result " + resultCode, Toast.LENGTH_LONG).show();
         }
     }
 }
