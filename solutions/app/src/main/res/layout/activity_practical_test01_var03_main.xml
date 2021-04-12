@@ -7,10 +7,11 @@
     tools:context="ro.pub.cs.systems.eim.practicaltest01.view.PracticalTest01MainActivity">
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/number_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:saveEnabled="false"
         android:inputType="textPersonName"
         android:text="0" />
 
@@ -20,28 +21,29 @@
         android:orientation="horizontal"
         android:layout_gravity="center">
     <Button
-        android:id="@+id/press_me_button"
+        android:id="@+id/plus_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="+"/>
 
     <Button
-        android:id="@+id/press_me_too_button"
+        android:id="@+id/minus_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="-"/>
     </LinearLayout>
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/number_2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:saveEnabled="false"
         android:inputType="textPersonName"
         android:text="0" />
 
     <EditText
-        android:id="@+id/left_edit_text"
+        android:id="@+id/result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="7"
